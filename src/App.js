@@ -2,13 +2,17 @@ import React, {Component} from 'react';
 
 import {SafeAreaView, StyleSheet} from 'react-native';
 
-import TextoCentral from './components/TextoCentral';
+import TelaA from './views/TelaA';
+import TelaB from './views/TelaB';
+import TelaC from './views/TelaC';
 
 class App extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <TextoCentral>App</TextoCentral>
+        <TelaA />
+        <TelaB />
+        <TelaC />
       </SafeAreaView>
     );
   }
