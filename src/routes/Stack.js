@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TelaA from '../views/TelaA';
 import TelaB from '../views/TelaB';
 import TelaC from '../views/TelaC';
+import PassoStack from '../components/PassoStack';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,13 +13,35 @@ export default props => {
     <Stack.Navigator initialRouteName="TelaA">
       <Stack.Screen
         name="TelaA"
-        component={TelaA}
         options={{
           title: 'Tela A',
+        }}>
+        {propsNavigator => (
+          <PassoStack {...propsNavigator} avancar="TelaB">
+            <TelaA />
+          </PassoStack>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="TelaB">
+        {propsNavigator => {
+          return (
+            <PassoStack {...propsNavigator} avancar="TelaC" voltar>
+              <TelaB />
+            </PassoStack>
+          );
         }}
-      />
-      <Stack.Screen name="TelaB" component={TelaB} />
-      <Stack.Screen name="TelaC" component={TelaC} />
+      </Stack.Screen>
+      <Stack.Screen name="TelaC">
+        {propsNavigator => (
+          <PassoStack
+            {...propsNavigator}
+            voltar
+            avancarComPush="TelaC"
+            params={{numero: parseInt(Math.random() * 100, 10)}}>
+            <TelaC {...propsNavigator} />
+          </PassoStack>
+        )}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 };
