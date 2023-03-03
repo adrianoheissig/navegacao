@@ -1,4 +1,5 @@
 import React from 'react';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -14,10 +15,28 @@ export default props => {
       screenOptions={{
         tabBarActiveTintColor: 'red',
         tabBarInactiveTintColor: 'blue',
-        tabBarLabelStyle: {fontSize: 30},
+        // tabBarShowLabel: false,
+        // tabBarLabelStyle: {fontSize: 30},
       }}
       initialRouteName="TelaB">
-      <Tab.Screen name="TelaA" component={TelaA} />
+      <Tab.Screen
+        name="TelaA"
+        component={TelaA}
+        options={{
+          title: 'Inicio',
+          tabBarIcon: ({focused, color, size}) => (
+            <Ionicons
+              name={
+                focused
+                  ? 'ios-information-circle'
+                  : 'ios-information-circle-outline'
+              }
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
       <Tab.Screen name="TelaB" component={TelaB} />
       <Tab.Screen name="TelaC" component={TelaC} />
     </Tab.Navigator>
